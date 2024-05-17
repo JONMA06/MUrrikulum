@@ -15,7 +15,7 @@
             background-image: url('/images/fondo_login.jpg');
             background-size: cover;
             background-position: center;
-            position: relative; 
+            position: relative;
         }
 
         .bg-overlay {
@@ -26,12 +26,14 @@
             height: 100%;
             background-color: rgba(0, 0, 0, 0.3);
         }
+
         .bg-login {
             background-color: rgba(255, 255, 255, 0.9);
         }
     </style>
 </head>
-<body>    
+
+<body>
     <header>
         <div th:replace="~{header :: header}"></div>
     </header>
@@ -44,9 +46,9 @@
                         <div class="col-12 col-xl-9 text-center">
                             <img class="img-fluid rounded mb-4" loading="lazy" src="/images/light_mode_logo.png"
                                 width="300" height="150" alt="Murrikulum Logo">
-                            
+
                             <h1 class="h1 mb-4">Talentua aukerekin konektatuz: Zure etorkizuna hemen hasten da.</h1>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -61,7 +63,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <form action="#!">
+                            <form action="/login" method="post">
                                 <div class="row gy-3 overflow-hidden">
                                     <div class="col-12">
                                         <div class="form-floating mb-3">
@@ -85,6 +87,10 @@
                                     </div>
                                 </div>
                             </form>
+
+                            <div th:if="${error}" class="alert alert-danger" role="alert">
+                                Erabiltzaile izena edo pasahitza okerra.
+                            </div>
 
                         </div>
                     </div>
