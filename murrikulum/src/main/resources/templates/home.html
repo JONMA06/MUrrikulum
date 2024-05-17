@@ -14,7 +14,7 @@
             align-items: center;
             justify-content: center;
             flex-direction: column;
-            background-image: url('/images/fondo_home2.jpg');
+            background-image: url('/images/fondo_home3.jpg');
             background-size: cover;
             background-position: center;
             position: relative; 
@@ -26,10 +26,9 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.3);
         }
         .intro-text {
-            color: white;
+            color: black;
             text-align: center;
             margin-bottom: 20px;
         }
@@ -41,6 +40,9 @@
         .container {
             width: 60%; 
             max-width: 800px; 
+        }
+        h1{
+            margin-bottom: 100px;
         }
     </style>
 </head>
@@ -54,11 +56,11 @@
         <div class="container">
             <div class="intro-text">
                 <h1>Ongi etorri MUrrikulum-era</h1>
-                <p>This is a brief introduction to my website. Feel free to explore!</p>
+                <p class="fs-4">Murrikulumekin, zure trebetasun, interes eta helburu profesionaletara egokitutako enplegu-eskaintza eta gaikuntza-aukera ugari azter ditzakezu. Zure lehen lanaren bila zabiltzala, karreraz aldatzen ari zarela edo zure trebetasunak hobetzen ari zarela, Murrikulumek badu zerbait zuretzat.</p>
             </div>
             <div class="btn-group">
-                <a href="#" class="btn btn-primary btn-lg me-2">Button 1</a>
-                <a href="#" class="btn btn-secondary btn-lg">Button 2</a>
+                <a th:href="@{/bilatuLanpostua}" class="btn btn-primary btn-lg me-2">Lanpostuak bilatu</a>
+                <a th:href="@{/bilatuKurtsoa}" class="btn btn-secondary btn-lg">Kurtsoak bilatu</a>
             </div>
         </div>
     </section>
