@@ -23,16 +23,5 @@ public class NavigationController {
         return "register"; 
     }
 
-    @PostMapping("/login")
-    public String login(@RequestParam String username, @RequestParam String password, Model model) {
-        User user = UserRepository.findByErabiltzaileaAndPasahitza(username, password);
-        if (user != null) {
-            // Usuario autenticado correctamente
-            return "redirect:/home";
-        } else {
-            // Credenciales inválidas, mostrar mensaje de error
-            model.addAttribute("error", true);
-            return "login";
-        }
-    }
+    
 }
