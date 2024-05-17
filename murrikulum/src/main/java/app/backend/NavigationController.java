@@ -15,4 +15,8 @@ public class NavigationController {
     public String izenaEman() {
         return "register"; 
     }
+    @GetMapping("/saioa_amaitu")
+    public String saioaAmaitu() {
+        return "home"; 
+    }
 }
