@@ -1,12 +1,11 @@
 package app.backend.repository;
 
-import org.springframework.data.repository.CrudRepository;
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import app.backend.model.User;
 
-public interface UserRepository extends CrudRepository<User, Long> {
-    static User findByErabiltzaileaAndPasahitza(String erabiltzailea, String pasahitza) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findByErabiltzaileaAndPasahitza'");
-    }
+public interface UserRepository extends JpaRepository<User, Long> {
+    Optional<User> findByErabiltzaileaAndPasahitza(String erabiltzailea, String pasahitza);
 }
