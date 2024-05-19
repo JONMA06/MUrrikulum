@@ -9,7 +9,13 @@
 </head>
 
 <body>
-    <header th:replace="~{header :: header}"></header>
+    <header th:if="${session.user_role == null}">
+        <div th:replace="~{header :: header}"></div>
+    </header>
+    <header th:if="${session.user_role != null}">
+        <div th:replace="~{header_loged :: header}"></div>
+    </header>
+
     <div class="container mt-5">
         <h1>Lanak</h1>
     </div>

@@ -45,30 +45,30 @@
                         </li>
 
                         <!-- arrunta specific items -->
-                        <li class="nav-item" th:if="${user_role == 'arrunta'}">
+                        <li class="nav-item" th:if="${session.user_role == 'arrunta'}">
                             <a class="nav-link" th:href="@{/bilatuLanpostua}">Lanpostuak bilatu</a>
                         </li>
-                        <li class="nav-item" th:if="${user_role == 'arrunta'}">
+                        <li class="nav-item" th:if="${session.user_role == 'arrunta'}">
                             <a class="nav-link" th:href="@{/bilatuKurtsoa}">Kurtsoak bilatu</a>
                         </li>
-                        <li class="nav-item" th:if="${user_role == 'arrunta'}">
+                        <li class="nav-item" th:if="${session.user_role == 'arrunta'}">
                             <a class="nav-link" th:href="@{/lanEremua}">Nire lan eremua</a>
                         </li>
 
                         <!-- enpresa specific items based on helburua -->
-                        <li class="nav-item" th:if="${user_role == 'enpresa' and helburua == 1 or helburua == 3}">
+                        <li class="nav-item" th:if="${session.user_role == 'enpresa' and (session.helburua == 1 or session.helburua == 3)}">
                             <a class="nav-link" th:href="@{/lanpostuBerria}">Lanpostu berria</a>
                         </li>
-                        <li class="nav-item" th:if="${user_role == 'enpresa' and helburua == 1 or helburua == 3}">
+                        <li class="nav-item" th:if="${session.user_role == 'enpresa' and (session.helburua == 1 or session.helburua == 3)}">
                             <a class="nav-link" th:href="@{/bilatuKurtsoa}">Kurtsoa bilatu</a>
                         </li>
-                        <li class="nav-item" th:if="${user_role == 'enpresa' and (helburua == 1 or helburua == 3)}">
+                        <li class="nav-item" th:if="${session.user_role == 'enpresa' and (session.helburua == 1 or session.helburua == 3)}">
                             <a class="nav-link" th:href="@{/enpresakoLanpostuak}">Enpresako lanpostuak</a>
                         </li>
-                        <li class="nav-item" th:if="${user_role == 'enpresa' and helburua == 2 or helburua == 3}">
+                        <li class="nav-item" th:if="${session.user_role == 'enpresa' and (session.helburua == 2 or session.helburua == 3)}">
                             <a class="nav-link" th:href="@{/kurtsoBerria}">Kurtso berria</a>
                         </li>
-                        <li class="nav-item" th:if="${user_role == 'enpresa' and (helburua == 2 or helburua == 3)}">
+                        <li class="nav-item" th:if="${session.user_role == 'enpresa' and (session.helburua == 2 or session.helburua == 3)}">
                             <a class="nav-link" th:href="@{/enpresakoKurtsoak}">Enpresako kurtsoak</a>
                         </li>
 

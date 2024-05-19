@@ -13,6 +13,7 @@ import app.backend.model.Enpresa;
 import app.backend.model.User;
 import app.backend.repository.EnpresaRepository;
 import app.backend.repository.UserRepository;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class NavigationController {
@@ -34,27 +35,26 @@ public class NavigationController {
     }
 
     @GetMapping("/saioa_amaitu")
-    public String saioaAmaitu(Model model) {
-        model.addAttribute("user_role", null);
-        model.addAttribute("helburua", null);
+    public String saioaAmaitu(HttpSession session, Model model) {
+        session.invalidate(); // Invalida la sesión actual
         return "home";
     }
 
     @PostMapping("/login")
-    public String login(@RequestParam String username, @RequestParam String password, Model model) {
+    public String login(@RequestParam String username, @RequestParam String password, HttpSession session, Model model) {
         Optional<User> userOptional = userRepository.findByErabiltzaileaAndPasahitza(username, password);
         if (userOptional.isPresent()) {
             User user = userOptional.get();
-            model.addAttribute("user_role", user.getRola());
+            session.setAttribute("user_role", user.getRola());
 
             if ("enpresa".equals(user.getRola())) {
                 Optional<Enpresa> enpresaOptional = enpresaRepository.findByUserId(user.getId());
                 if (enpresaOptional.isPresent()) {
                     Enpresa enpresa = enpresaOptional.get();
-                    model.addAttribute("helburua", enpresa.getHelburua());
+                    session.setAttribute("helburua", enpresa.getHelburua());
                 }
             }
-            model.addAttribute("notloged", false);
+            session.setAttribute("notloged", false);
             return "home";
         } else {
             model.addAttribute("error", true);

@@ -53,10 +53,10 @@
 
 <body>
 
-    <header th:if="${user_role == null}">
+    <header th:if="${session.user_role == null}">
         <div th:replace="~{header :: header}"></div>
     </header>
-    <header th:if="${user_role != null}">
+    <header th:if="${session.user_role != null}">
         <div th:replace="~{header_loged :: header}"></div>
     </header>
 
