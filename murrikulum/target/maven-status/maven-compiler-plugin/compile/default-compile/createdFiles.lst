@@ -1,10 +1,10 @@
-app\backend\RedirectController.class
 app\backend\Main.class
 app\backend\model\Dokumentuak.class
 app\backend\NavigationController.class
 app\backend\repository\EnpresaRepository.class
 app\backend\repository\LanBilaRepository.class
 app\backend\model\LanBila.class
+app\backend\MainController.class
 app\backend\model\User.class
 app\backend\repository\DokumentuakRepository.class
 app\backend\model\Enpresa.class

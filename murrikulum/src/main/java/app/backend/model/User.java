@@ -13,7 +13,7 @@ import java.util.List;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     private String erabiltzailea;
     private String pasahitza;
@@ -28,11 +28,11 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Dokumentuak> dokumentuak;
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

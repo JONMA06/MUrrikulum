@@ -54,6 +54,7 @@ public class NavigationController {
                     model.addAttribute("helburua", enpresa.getHelburua());
                 }
             }
+            model.addAttribute("notloged", false);
             return "home";
         } else {
             model.addAttribute("error", true);

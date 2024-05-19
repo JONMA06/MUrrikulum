@@ -47,11 +47,11 @@
                             <img class="img-fluid rounded mb-4" loading="lazy" src="/images/light_mode_logo.png"
                                 width="300" height="150" alt="Murrikulum Logo">
 
-                                <h1 class="h1 mb-4">
-                                    Talentua aukerekin konektatuz<br>
-                                    Zure etorkizuna hemen hasten da.
-                                </h1>
-                                
+                            <h1 class="h1 mb-4">
+                                Talentua aukerekin konektatuz<br>
+                                Zure etorkizuna hemen hasten da.
+                            </h1>
+
                         </div>
                     </div>
                 </div>
@@ -67,6 +67,10 @@
                                     <div th:if="${error}" class="alert alert-danger" role="alert">
                                         Erabiltzaile izena edo pasahitza okerra.
                                     </div>
+                                    <div th:if="${notloged}" class="alert alert-danger" role="alert">
+                                        Orri horretara sartzeko logeatuta egon behar zara.
+                                    </div>
+
                                 </div>
                             </div>
                             <form action="/login" method="post">
@@ -94,7 +98,7 @@
                                 </div>
                             </form>
 
-                            
+
 
                         </div>
                     </div>
