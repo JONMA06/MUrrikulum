@@ -36,36 +36,41 @@
                                     enpresa</a>
                             </div>
                             <div th:if="${errorMessage}" class="alert alert-danger" th:text="${errorMessage}"></div>
-                            <form action="/register_arrunta" method="post" onsubmit="return validatePasswords()">
+                            <form action="/register_arrunta" method="post" onsubmit="return validateForm()">
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
                                         <div class="form-floating mb-3">
                                             <input type="text" id="izena" name="izena"
-                                                class="form-control form-control-lg" placeholder="Izena" required/>
+                                                class="form-control form-control-lg" placeholder="Izena" required />
                                             <label for="izena" class="form-label">Izena</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <div class="form-floating mb-3">
                                             <input type="text" id="abizenak" name="abizena"
-                                                class="form-control form-control-lg" placeholder="Abizenak" required/>
+                                                class="form-control form-control-lg" placeholder="Abizenak" required />
                                             <label for="abizenak" class="form-label">Abizenak</label>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="row">
+                                    <div id="passwordRequirements" class="mb-3">
+                                        
+                                    </div>
                                     <div class="col-md-6 mb-3">
                                         <div class="form-floating mb-3">
                                             <input type="password" id="pasahitza" name="pasahitza"
-                                                class="form-control form-control-lg" placeholder="Pasahitza" required/>
+                                                class="form-control form-control-lg" placeholder="Pasahitza" required
+                                                onchange="checkPasswordRequirements()" />
                                             <label for="pasahitza" class="form-label">Pasahitza</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <div class="form-floating mb-3">
                                             <input type="password" id="pasahitza2" class="form-control form-control-lg"
-                                                placeholder="Pasahitza baieztatu" required/>
+                                                placeholder="Pasahitza baieztatu" required
+                                                onchange="checkPasswordRequirements()" />
                                             <label for="pasahitza2" class="form-label">Pasahitza baieztatu</label>
                                         </div>
                                     </div>
@@ -75,14 +80,16 @@
                                     <div class="col-md-6 mb-3">
                                         <div class="form-floating mb-3">
                                             <input type="email" id="emailAddress" name="email"
-                                                class="form-control form-control-lg" placeholder="Posta elektronikoa" required/>
+                                                class="form-control form-control-lg" placeholder="Posta elektronikoa"
+                                                required />
                                             <label for="emailAddress" class="form-label">Posta elektronikoa</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <div class="form-floating mb-3">
                                             <input type="text" id="erabiltzailea" name="erabiltzailea"
-                                                class="form-control form-control-lg" placeholder="Erabiltzaile izena" required/>
+                                                class="form-control form-control-lg" placeholder="Erabiltzaile izena"
+                                                required />
                                             <label for="erabiltzailea" class="form-label">Erabiltzaile izena</label>
                                         </div>
                                     </div>
@@ -92,7 +99,7 @@
                                     <div class="col-md-6 mb-3">
                                         <div class="form-floating mb-1">
                                             <input type="number" id="adina" name="adina"
-                                                class="form-control form-control-lg" placeholder="Adina" required/>
+                                                class="form-control form-control-lg" placeholder="Adina" required />
                                             <label for="adina" class="form-label">Adina</label>
                                         </div>
                                     </div>
@@ -180,7 +187,7 @@
     </section>
 
     <script>
-        function validatePasswords() {
+        function validateForm() {
             const password = document.getElementById('pasahitza').value;
             const confirmPassword = document.getElementById('pasahitza2').value;
 
@@ -188,8 +195,39 @@
                 alert('Pasahitzak ez dira berdinak');
                 return false;
             }
+
+            const passwordPattern = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[\w!@#$%^&*()_+]{8,}$/;
+
+            if (!passwordPattern.test(password)) {
+                alert('Pasahitza ez da segurua. Mesedez, sartu gutxienez letra larri, zenbaki eta sinbolo bat.');
+                return false;
+            }
+
             return true;
         }
+
+        function checkPasswordRequirements() {
+            const password = document.getElementById('pasahitza').value;
+            const confirmPassword = document.getElementById('pasahitza2').value;
+            const passwordRequirements = document.getElementById('passwordRequirements');
+
+            const passwordPattern = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[\w!@#$%^&*()_+]{8,}$/;
+
+            if (passwordPattern.test(password) && password === confirmPassword) {
+                passwordRequirements.textContent = 'Pasahitza onargarria da.';
+                passwordRequirements.classList.remove('text-danger');
+                passwordRequirements.classList.add('text-success');
+            } else if (password !== confirmPassword) {
+                passwordRequirements.textContent = 'Pasahitzak ez dira berdinak.';
+                passwordRequirements.classList.remove('text-success');
+                passwordRequirements.classList.add('text-danger');
+            } else {
+                passwordRequirements.textContent = 'Pasahitza ez da segurua. Mesedez, sartu gutxienez letra larri, zenbaki, sinbolo bat eta 8 karaktere.';
+                passwordRequirements.classList.remove('text-success');
+                passwordRequirements.classList.add('text-danger');
+            }
+        }
+
     </script>
 </body>
 

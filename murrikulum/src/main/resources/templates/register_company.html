@@ -51,17 +51,22 @@
                                 </div>
 
                                 <div class="row">
+                                    <div id="passwordRequirements" class="mb-3">
+                                        
+                                    </div>
                                     <div class="col-md-6 mb-3">
                                         <div class="form-floating mb-3">
                                             <input type="password" id="pasahitza" name="pasahitza"
-                                                class="form-control form-control-lg" placeholder="Pasahitza" required />
+                                                class="form-control form-control-lg" placeholder="Pasahitza" required
+                                                onchange="checkPasswordRequirements()" />
                                             <label for="pasahitza" class="form-label">Pasahitza</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <div class="form-floating mb-3">
                                             <input type="password" id="pasahitza2" class="form-control form-control-lg"
-                                                placeholder="Pasahitza baieztatu" required />
+                                                placeholder="Pasahitza baieztatu" required
+                                                onchange="checkPasswordRequirements()" />
                                             <label for="pasahitza2" class="form-label">Pasahitza baieztatu</label>
                                         </div>
                                     </div>
@@ -182,7 +187,7 @@
     </section>
 
     <script>
-        function validatePasswords() {
+        function validateForm() {
             const password = document.getElementById('pasahitza').value;
             const confirmPassword = document.getElementById('pasahitza2').value;
 
@@ -190,8 +195,39 @@
                 alert('Pasahitzak ez dira berdinak');
                 return false;
             }
+
+            const passwordPattern = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[\w!@#$%^&*()_+]{8,}$/;
+
+            if (!passwordPattern.test(password)) {
+                alert('Pasahitza ez da segurua. Mesedez, sartu gutxienez letra larri, zenbaki eta sinbolo bat.');
+                return false;
+            }
+
             return true;
         }
+
+        function checkPasswordRequirements() {
+            const password = document.getElementById('pasahitza').value;
+            const confirmPassword = document.getElementById('pasahitza2').value;
+            const passwordRequirements = document.getElementById('passwordRequirements');
+
+            const passwordPattern = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[\w!@#$%^&*()_+]{8,}$/;
+
+            if (passwordPattern.test(password) && password === confirmPassword) {
+                passwordRequirements.textContent = 'Pasahitza onargarria da.';
+                passwordRequirements.classList.remove('text-danger');
+                passwordRequirements.classList.add('text-success');
+            } else if (password !== confirmPassword) {
+                passwordRequirements.textContent = 'Pasahitzak ez dira berdinak.';
+                passwordRequirements.classList.remove('text-success');
+                passwordRequirements.classList.add('text-danger');
+            } else {
+                passwordRequirements.textContent = 'Pasahitza ez da segurua. Mesedez, sartu gutxienez letra larri, zenbaki, sinbolo bat eta 8 karaktere.';
+                passwordRequirements.classList.remove('text-success');
+                passwordRequirements.classList.add('text-danger');
+            }
+        }
+
     </script>
 </body>
 
