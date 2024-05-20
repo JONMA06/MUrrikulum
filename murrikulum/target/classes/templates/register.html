@@ -31,22 +31,22 @@
                     <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
                         <div class="card-body p-4 p-md-5">
                             <div class="d-flex justify-content-between align-items-center mb-4">
-                                <h1 class="mb-2 pb-2 pb-md-0 mb-md-4">Izena eman</h1>
+                                <h1 class="mb-2 pb-2 pb-md-0 mb-md-2">Izena eman</h1>
                                 <a th:href="@{/izena_eman_enpresa}" class="btn btn-sm btn-success pt-2 pb-2">Izena eman
-                                    enpresa</a>
+                                    enpresa moduan</a>
                             </div>
-                            <div th:if="${errorMessage}" class="alert alert-danger" th:text="${errorMessage}"></div>
+                            <div th:if="${errorMessage}" class="alert alert-danger" th:utext="${errorMessage}"></div>
                             <form action="/register_arrunta" method="post" onsubmit="return validateForm()">
                                 <div class="row">
-                                    <div class="col-md-6 mb-3">
-                                        <div class="form-floating mb-3">
+                                    <div class="col-md-6 mb-2">
+                                        <div class="form-floating mb-2">
                                             <input type="text" id="izena" name="izena"
                                                 class="form-control form-control-lg" placeholder="Izena" required />
                                             <label for="izena" class="form-label">Izena</label>
                                         </div>
                                     </div>
-                                    <div class="col-md-6 mb-3">
-                                        <div class="form-floating mb-3">
+                                    <div class="col-md-6 mb-2">
+                                        <div class="form-floating mb-2">
                                             <input type="text" id="abizenak" name="abizena"
                                                 class="form-control form-control-lg" placeholder="Abizenak" required />
                                             <label for="abizenak" class="form-label">Abizenak</label>
@@ -55,19 +55,19 @@
                                 </div>
 
                                 <div class="row">
-                                    <div id="passwordRequirements" class="mb-3">
+                                    <div id="passwordRequirements" class="mb-2">
                                         
                                     </div>
-                                    <div class="col-md-6 mb-3">
-                                        <div class="form-floating mb-3">
+                                    <div class="col-md-6 mb-2">
+                                        <div class="form-floating mb-2">
                                             <input type="password" id="pasahitza" name="pasahitza"
                                                 class="form-control form-control-lg" placeholder="Pasahitza" required
                                                 onchange="checkPasswordRequirements()" />
                                             <label for="pasahitza" class="form-label">Pasahitza</label>
                                         </div>
                                     </div>
-                                    <div class="col-md-6 mb-3">
-                                        <div class="form-floating mb-3">
+                                    <div class="col-md-6 mb-2">
+                                        <div class="form-floating mb-2">
                                             <input type="password" id="pasahitza2" class="form-control form-control-lg"
                                                 placeholder="Pasahitza baieztatu" required
                                                 onchange="checkPasswordRequirements()" />
@@ -77,16 +77,16 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-md-6 mb-3">
-                                        <div class="form-floating mb-3">
+                                    <div class="col-md-6 mb-2">
+                                        <div class="form-floating mb-2">
                                             <input type="email" id="emailAddress" name="email"
                                                 class="form-control form-control-lg" placeholder="Posta elektronikoa"
                                                 required />
                                             <label for="emailAddress" class="form-label">Posta elektronikoa</label>
                                         </div>
                                     </div>
-                                    <div class="col-md-6 mb-3">
-                                        <div class="form-floating mb-3">
+                                    <div class="col-md-6 mb-2">
+                                        <div class="form-floating mb-2">
                                             <input type="text" id="erabiltzailea" name="erabiltzailea"
                                                 class="form-control form-control-lg" placeholder="Erabiltzaile izena"
                                                 required />
@@ -96,14 +96,14 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-md-6 mb-3">
+                                    <div class="col-md-6 mb-2">
                                         <div class="form-floating mb-1">
                                             <input type="number" id="adina" name="adina"
                                                 class="form-control form-control-lg" placeholder="Adina" required />
                                             <label for="adina" class="form-label">Adina</label>
                                         </div>
                                     </div>
-                                    <div class="col-md-6 mb-3">
+                                    <div class="col-md-6 mb-2">
                                         <div class="form-floating mb-1">
                                             <select class="form-select form-control-lg" id="lokalidadea"
                                                 name="lokalidadea">

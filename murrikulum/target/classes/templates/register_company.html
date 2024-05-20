@@ -29,20 +29,22 @@
                 <div class="col-12 col-lg-9 col-xl-7">
                     <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
                         <div class="card-body p-4 p-md-5">
-                            <h1 class="mb-2 pb-2 pb-md-0 mb-md-4">Enpresa izena eman</h1>
-
-                            <div th:if="${errorMessage}" class="alert alert-danger" th:text="${errorMessage}"></div>
+                            
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <h1 class="mb-2 pb-2 pb-md-0 mb-md-2">Enpresa izena eman</h1>
+                            </div>
+                            <div th:if="${errorMessage}" class="alert alert-danger" th:utext="${errorMessage}"></div>
                             <form action="/register_enpresa" method="post" onsubmit="return validatePasswords()">
                                 <div class="row">
-                                    <div class="col-md-6 mb-3">
-                                        <div class="form-floating mb-3">
+                                    <div class="col-md-6 mb-2">
+                                        <div class="form-floating mb-2">
                                             <input type="text" id="enpresa_izena" name="enpresa_izena"
                                                 class="form-control form-control-lg" placeholder="Izena" required />
                                             <label for="enpresa_izena" class="form-label">Enpresaren izena</label>
                                         </div>
                                     </div>
-                                    <div class="col-md-6 mb-3">
-                                        <div class="form-floating mb-3">
+                                    <div class="col-md-6 mb-2">
+                                        <div class="form-floating mb-2">
                                             <input type="text" id="NIF" name="NIF" class="form-control form-control-lg"
                                                 placeholder="NIF" required />
                                             <label for="NIF" class="form-label">NIF</label>
@@ -51,19 +53,19 @@
                                 </div>
 
                                 <div class="row">
-                                    <div id="passwordRequirements" class="mb-3">
+                                    <div id="passwordRequirements" class="mb-2">
                                         
                                     </div>
-                                    <div class="col-md-6 mb-3">
-                                        <div class="form-floating mb-3">
+                                    <div class="col-md-6 mb-2">
+                                        <div class="form-floating mb-2">
                                             <input type="password" id="pasahitza" name="pasahitza"
                                                 class="form-control form-control-lg" placeholder="Pasahitza" required
                                                 onchange="checkPasswordRequirements()" />
                                             <label for="pasahitza" class="form-label">Pasahitza</label>
                                         </div>
                                     </div>
-                                    <div class="col-md-6 mb-3">
-                                        <div class="form-floating mb-3">
+                                    <div class="col-md-6 mb-2">
+                                        <div class="form-floating mb-2">
                                             <input type="password" id="pasahitza2" class="form-control form-control-lg"
                                                 placeholder="Pasahitza baieztatu" required
                                                 onchange="checkPasswordRequirements()" />
@@ -73,16 +75,16 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-md-6 mb-3">
-                                        <div class="form-floating mb-3">
+                                    <div class="col-md-6 mb-2">
+                                        <div class="form-floating mb-2">
                                             <input type="email" id="emailAddress" name="email"
                                                 class="form-control form-control-lg" placeholder="Posta elektronikoa"
                                                 required />
                                             <label for="emailAddress" class="form-label">Posta elektronikoa</label>
                                         </div>
                                     </div>
-                                    <div class="col-md-6 mb-3">
-                                        <div class="form-floating mb-3">
+                                    <div class="col-md-6 mb-2">
+                                        <div class="form-floating mb-2">
                                             <input type="text" id="erabiltzailea" name="erabiltzailea"
                                                 class="form-control form-control-lg" placeholder="Erabiltzaile izena"
                                                 required />
@@ -92,7 +94,7 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-md-6 mb-3">
+                                    <div class="col-md-6 mb-2">
                                         <div class="form-floating mb-1">
                                             <select class="form-select form-control-lg" id="lokalidadea"
                                                 name="lokalidadea">
@@ -153,7 +155,7 @@
                                             <label for="lokalidadea" class="form-label">Probintzia</label>
                                         </div>
                                     </div>
-                                    <div class="col-md-6 mb-3">
+                                    <div class="col-md-6 mb-2">
                                         <label class="form-label mr-2">Helburua:</label>
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" value="1"
