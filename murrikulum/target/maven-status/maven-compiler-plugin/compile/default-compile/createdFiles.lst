@@ -5,6 +5,7 @@ app\backend\repository\EnpresaRepository.class
 app\backend\repository\LanBilaRepository.class
 app\backend\model\LanBila.class
 app\backend\MainController.class
+app\backend\CreateAssessment.class
 app\backend\model\User.class
 app\backend\repository\DokumentuakRepository.class
 app\backend\model\Enpresa.class
