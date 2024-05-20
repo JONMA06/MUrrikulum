@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import app.backend.model.Enpresa;
+import app.backend.model.LanBila;
 import app.backend.model.User;
 import app.backend.repository.EnpresaRepository;
+import app.backend.repository.LanBilaRepository;
 import app.backend.repository.UserRepository;
 import jakarta.servlet.http.HttpSession;
 
@@ -20,9 +22,12 @@ public class NavigationController {
 
     @Autowired
     private UserRepository userRepository;
-    
+
     @Autowired
     private EnpresaRepository enpresaRepository;
+
+    @Autowired
+    private LanBilaRepository lanBilaRepository;
 
     @GetMapping("/saioa_hasi")
     public String saioaHasi() {
@@ -41,7 +46,8 @@ public class NavigationController {
     }
 
     @PostMapping("/login")
-    public String login(@RequestParam String username, @RequestParam String password, HttpSession session, Model model) {
+    public String login(@RequestParam String username, @RequestParam String password, HttpSession session,
+            Model model) {
         Optional<User> userOptional = userRepository.findByErabiltzaileaAndPasahitza(username, password);
         if (userOptional.isPresent()) {
             User user = userOptional.get();
@@ -60,5 +66,38 @@ public class NavigationController {
             model.addAttribute("error", true);
             return "login";
         }
+    }
+
+    @PostMapping("/register_arrunta")
+    public String registerArrunta(
+            HttpSession session,
+            @RequestParam String erabiltzailea,
+            @RequestParam String pasahitza,
+            @RequestParam String izena,
+            @RequestParam String abizena,
+            @RequestParam String lokalidadea,
+            @RequestParam Integer adina,
+            @RequestParam String email,
+            Model model) {
+
+        User user = new User();
+        user.setErabiltzailea(erabiltzailea);
+        user.setPasahitza(pasahitza);
+        user.setRola("arrunta");
+        userRepository.save(user);
+
+        LanBila lanBila = new LanBila();
+        lanBila.setUser(user);
+        lanBila.setIzena(izena);
+        lanBila.setAbizena(abizena);
+        lanBila.setLokalidadea(lokalidadea);
+        lanBila.setAdina(adina);
+        lanBila.setEmail(email);
+        lanBilaRepository.save(lanBila);
+
+        session.setAttribute("user_role", "arrunta");
+        session.setAttribute("notloged", false);
+
+        return "home";
     }
 }

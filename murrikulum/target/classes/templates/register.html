@@ -17,7 +17,9 @@
             background-size: cover;
             background-position: center;
             position: relative;
+            
         }
+
     </style>
 </head>
 
@@ -29,78 +31,71 @@
                 <div class="col-12 col-lg-9 col-xl-7">
                     <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
                         <div class="card-body p-4 p-md-5">
-                            <h1 class="mb-4 pb-2 pb-md-0 mb-md-5">Izena ematea</h1>
-                            <form>
-
+                            <h1 class="mb-2 pb-2 pb-md-0 mb-md-4">Izena ematea</h1>
+                            <form action="/register_arrunta" method="post" onsubmit="return validatePasswords()">
                                 <div class="row">
-                                    <div class="col-md-6 mb-4">
-
-                                        <div data-mdb-input-init class="form-outline">
-                                            <input type="text" id="izena" class="form-control form-control-lg" />
-                                            <label class="form-label" for="izena">Izena</label>
-                                        </div>
-
-                                    </div>
-                                    <div class="col-md-6 mb-4">
-
-                                        <div data-mdb-input-init class="form-outline">
-                                            <input type="text" id="abizenak" class="form-control form-control-lg" />
-                                            <label class="form-label" for="abizenak">Abizenak</label>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-6 mb-4">
-                                        <div data-mdb-input-init class="form-outline mb-4">
-                                            <input type="password" id="pasahitza"
-                                                class="form-control form-control-lg" />
-                                            <label class="form-label" for="pasahitza">Pasahitza</label>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="form-floating mb-3">
+                                            <input type="text" id="izena" name="izena"
+                                                class="form-control form-control-lg" placeholder="Izena" />
+                                            <label for="izena" class="form-label">Izena</label>
                                         </div>
                                     </div>
-                                    <div class="col-md-6 mb-4">
-
-                                        <div data-mdb-input-init class="form-outline mb-4">
-                                            <input type="password" id="pasahitza2"
-                                                class="form-control form-control-lg" />
-                                            <label class="form-label" for="pasahitza2">Pasahitza baieztatu</label>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-6 mb-4">
-
-                                        <div data-mdb-input-init class="form-outline">
-                                            <input type="email" id="emailAddress"
-                                                class="form-control form-control-lg" />
-                                            <label class="form-label" for="emailAddress">Posta elektronikoa</label>
-                                        </div>
-
-                                    </div>
-                                    <div class="col-md-6 mb-4">
-                                        <div data-mdb-input-init class="form-outline">
-                                            <input type="text" id="erabiltzailea"
-                                                class="form-control form-control-lg" />
-                                            <label class="form-label" for="erabiltzailea">Erabiltzaile izena</label>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="form-floating mb-3">
+                                            <input type="text" id="abizenak" name="abizena"
+                                                class="form-control form-control-lg" placeholder="Abizenak" />
+                                            <label for="abizenak" class="form-label">Abizenak</label>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-md-6 mb-4">
-
-                                        <div data-mdb-input-init class="form-outline">
-                                            <input type="number" id="adina" class="form-control form-control-lg" />
-                                            <label class="form-label" for="adina">Adina</label>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="form-floating mb-3">
+                                            <input type="password" id="pasahitza" name="pasahitza"
+                                                class="form-control form-control-lg" placeholder="Pasahitza" />
+                                            <label for="pasahitza" class="form-label">Pasahitza</label>
                                         </div>
-
                                     </div>
-                                    <div class="col-md-6 mb-4">
-                                        <div data-mdb-input-init class="form-outline">
-                                            <select class="select form-control-lg" id="lokalidadea">
+                                    <div class="col-md-6 mb-3">
+                                        <div class="form-floating mb-3">
+                                            <input type="password" id="pasahitza2" class="form-control form-control-lg"
+                                                placeholder="Pasahitza baieztatu" />
+                                            <label for="pasahitza2" class="form-label">Pasahitza baieztatu</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <div class="form-floating mb-3">
+                                            <input type="email" id="emailAddress" name="email"
+                                                class="form-control form-control-lg" placeholder="Posta elektronikoa" />
+                                            <label for="emailAddress" class="form-label">Posta elektronikoa</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="form-floating mb-3">
+                                            <input type="text" id="erabiltzailea" name="erabiltzailea"
+                                                class="form-control form-control-lg" placeholder="Erabiltzaile izena" />
+                                            <label for="erabiltzailea" class="form-label">Erabiltzaile izena</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <div class="form-floating mb-1">
+                                            <input type="number" id="adina" name="adina"
+                                                class="form-control form-control-lg" placeholder="Adina" />
+                                            <label for="adina" class="form-label">Adina</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="form-floating mb-1">
+                                            <select class="form-select form-control-lg" id="lokalidadea"
+                                                name="lokalidadea">
                                                 <option value="1">---Probintzia bat aukeratu---</option>
                                                 <option value="Alava">Álava</option>
                                                 <option value="Albacete">Albacete</option>
@@ -155,30 +150,43 @@
                                                 <option value="Zamora">Zamora</option>
                                                 <option value="Zaragoza">Zaragoza</option>
                                             </select>
-                                            <label class="form-label" for="lokalidadea">Probintzia</label>
+                                            <label for="lokalidadea" class="form-label">Probintzia</label>
                                         </div>
                                     </div>
-
                                 </div>
-
-                                <div class="row">
-                                    <div class="col-md-6 mb-4 form-group mt-3">
+                                <!-- <div class="row">
+                                    <div class="col-md-6 mb-1 form-group mt-3">
                                         <label class="form-label mr-2" for="fitxategia">Igo zure dokumentuak:</label>
-                                        <input type="file" id="fitxategia">
+                                        <input type="file" id="fitxategia" value="Artxiboa aukeratu">
                                     </div>
-                                </div>
+                                </div> -->
+
                                 <div class="mt-4 pt-2">
                                     <input data-mdb-ripple-init class="btn btn-primary btn-lg" type="submit"
-                                        value="Submit" />
+                                        value="Izena eman">
                                 </div>
-
                             </form>
+                            
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <script>
+        function validatePasswords() {
+            const password = document.getElementById('pasahitza').value;
+            const confirmPassword = document.getElementById('pasahitza2').value;
+
+            if (password !== confirmPassword) {
+                alert('Pasahitzak ez dira berdinak');
+                return false;
+            }
+            return true;
+        }
+    </script>
 </body>
 
 </html>
