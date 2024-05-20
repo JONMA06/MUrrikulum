@@ -72,4 +72,12 @@ public class Enpresa {
     public void setHelburua(Integer helburua) {
         this.helburua = helburua;
     }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

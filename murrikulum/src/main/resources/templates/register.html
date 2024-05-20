@@ -17,9 +17,8 @@
             background-size: cover;
             background-position: center;
             position: relative;
-            
-        }
 
+        }
     </style>
 </head>
 
@@ -31,20 +30,25 @@
                 <div class="col-12 col-lg-9 col-xl-7">
                     <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
                         <div class="card-body p-4 p-md-5">
-                            <h1 class="mb-2 pb-2 pb-md-0 mb-md-4">Izena ematea</h1>
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <h1 class="mb-2 pb-2 pb-md-0 mb-md-4">Izena eman</h1>
+                                <a th:href="@{/izena_eman_enpresa}" class="btn btn-sm btn-success pt-2 pb-2">Izena eman
+                                    enpresa</a>
+                            </div>
+                            <div th:if="${errorMessage}" class="alert alert-danger" th:text="${errorMessage}"></div>
                             <form action="/register_arrunta" method="post" onsubmit="return validatePasswords()">
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
                                         <div class="form-floating mb-3">
                                             <input type="text" id="izena" name="izena"
-                                                class="form-control form-control-lg" placeholder="Izena" />
+                                                class="form-control form-control-lg" placeholder="Izena" required/>
                                             <label for="izena" class="form-label">Izena</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <div class="form-floating mb-3">
                                             <input type="text" id="abizenak" name="abizena"
-                                                class="form-control form-control-lg" placeholder="Abizenak" />
+                                                class="form-control form-control-lg" placeholder="Abizenak" required/>
                                             <label for="abizenak" class="form-label">Abizenak</label>
                                         </div>
                                     </div>
@@ -54,14 +58,14 @@
                                     <div class="col-md-6 mb-3">
                                         <div class="form-floating mb-3">
                                             <input type="password" id="pasahitza" name="pasahitza"
-                                                class="form-control form-control-lg" placeholder="Pasahitza" />
+                                                class="form-control form-control-lg" placeholder="Pasahitza" required/>
                                             <label for="pasahitza" class="form-label">Pasahitza</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <div class="form-floating mb-3">
                                             <input type="password" id="pasahitza2" class="form-control form-control-lg"
-                                                placeholder="Pasahitza baieztatu" />
+                                                placeholder="Pasahitza baieztatu" required/>
                                             <label for="pasahitza2" class="form-label">Pasahitza baieztatu</label>
                                         </div>
                                     </div>
@@ -71,14 +75,14 @@
                                     <div class="col-md-6 mb-3">
                                         <div class="form-floating mb-3">
                                             <input type="email" id="emailAddress" name="email"
-                                                class="form-control form-control-lg" placeholder="Posta elektronikoa" />
+                                                class="form-control form-control-lg" placeholder="Posta elektronikoa" required/>
                                             <label for="emailAddress" class="form-label">Posta elektronikoa</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <div class="form-floating mb-3">
                                             <input type="text" id="erabiltzailea" name="erabiltzailea"
-                                                class="form-control form-control-lg" placeholder="Erabiltzaile izena" />
+                                                class="form-control form-control-lg" placeholder="Erabiltzaile izena" required/>
                                             <label for="erabiltzailea" class="form-label">Erabiltzaile izena</label>
                                         </div>
                                     </div>
@@ -88,7 +92,7 @@
                                     <div class="col-md-6 mb-3">
                                         <div class="form-floating mb-1">
                                             <input type="number" id="adina" name="adina"
-                                                class="form-control form-control-lg" placeholder="Adina" />
+                                                class="form-control form-control-lg" placeholder="Adina" required/>
                                             <label for="adina" class="form-label">Adina</label>
                                         </div>
                                     </div>
@@ -161,12 +165,12 @@
                                     </div>
                                 </div> -->
 
-                                <div class="mt-4 pt-2">
+                                <div class="mt-2 pt-2">
                                     <input data-mdb-ripple-init class="btn btn-primary btn-lg" type="submit"
-                                        value="Izena eman">
+                                        value="Ados">
                                 </div>
                             </form>
-                            
+
 
                         </div>
                     </div>

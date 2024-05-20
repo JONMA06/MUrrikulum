@@ -4,7 +4,7 @@ USE users_murrikulum;
 
 CREATE TABLE IF NOT EXISTS `user` (
   `id` INTEGER AUTO_INCREMENT PRIMARY KEY,
-  `erabiltzailea` VARCHAR(255),
+  `erabiltzailea` VARCHAR(255) UNIQUE,
   `pasahitza` VARCHAR(255),
   `rola` VARCHAR(255)
 );
@@ -44,10 +44,10 @@ CREATE TABLE IF NOT EXISTS `dokumentuak` (
 
 
 INSERT INTO `user` (`erabiltzailea`, `pasahitza`, `rola`) VALUES 
-('usuario1', 'contraseña1', 'arrunta'),  
-('usuario2', 'contraseña2', 'enpresa'),  
-('usuario3', 'contraseña3', 'enpresa'),  
-('usuario4', 'contraseña4', 'enpresa');  
+('Langabe', '$2a$10$TYrP56q2NEOKDQX3JJtUQuLrDX.urx/KPXpd1xp1Y5pue.LaFsb2.', 'arrunta'),  
+('LanEnpresa', '$2a$10$TYrP56q2NEOKDQX3JJtUQuLrDX.urx/KPXpd1xp1Y5pue.LaFsb2.', 'enpresa'),  
+('KurtsoEnpresa', '$2a$10$TYrP56q2NEOKDQX3JJtUQuLrDX.urx/KPXpd1xp1Y5pue.LaFsb2.', 'enpresa'),  
+('BiakEnpresa', '$2a$10$TYrP56q2NEOKDQX3JJtUQuLrDX.urx/KPXpd1xp1Y5pue.LaFsb2.', 'enpresa');  
 
 INSERT INTO `enpresa` (`user_id`, `enpresa_izena`, `lokalidadea`, `NIF`, `email`, `helburua`) VALUES 
 (2, 'Empresa 1', 'Lokalitatea 1', '12345678A', 'a@a.com', 1),
