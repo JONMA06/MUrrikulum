@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <title>Work Position Card</title>
+    <style>
+        .card-position {
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            
+        }
+        .card-position h2 {
+            font-size: 1.5rem;
+        }
+        .card-position p {
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div th:fragment="positionCard">
+        <div class="card card-position m-3 p-3">
+            <h2 class="card-title" th:text="${position.lanIzena}">Lan Izena</h2>
+            <div class="card-body">
+                <p><strong>Enpresa Izena:</strong> <span  th:text="${position.enpresaIzena}">Enpresa Izena</span></p>
+                <p><strong>Lokalitatea:</strong> <span th:text="${position.lokalidadea}">Lokalitatea</span></p>
+                <p><strong>Soldata:</strong> <span th:text="${position.soldata}">Soldata</span></p>
+                <p><strong>Sektorea:</strong> <span th:text="${position.sektorea}">Sektorea</span></p>
+                <p><strong>Hizkuntza:</strong> <span th:text="${position.hizkuntza}">Hizkuntza</span></p>
+                <p><strong>Beharrezko Hezkuntza:</strong> <span th:text="${position.hezkuntza}">Hezkuntza</span></p>
+                <p><strong>Modua:</strong> <span th:text="${position.modua}">Online edo Fisikoa</span></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
