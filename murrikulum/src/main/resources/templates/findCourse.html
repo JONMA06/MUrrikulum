@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    <title>Bilatu lanpostuak</title>
+    <title>Bilatu kurtsoak</title>
     <style>
         .full-screen-section {
             min-height: 100vh;
@@ -40,7 +40,7 @@
         }
 
         /* Agregamos margen inferior al contenedor de los valores de salario */
-        .salary-container {
+        .rating-container {
             margin-bottom: 20px;
         }
     </style>
@@ -59,44 +59,19 @@
         <div class="container bg-login">
             <div class="intro-text">
                 <h1>Kurtsoak bilatu</h1>
-                <p class="fs-4">Aurkitu zure trebetasun, interes eta helburuetara hobekien egokitzen den kurtso
-                    profesionalak.</p>
+                <p class="fs-4">Aurkitu zure trebetasun, interes eta helburuetara hobekien egokitzen diren kurtso
+                    akademikoak.</p>
             </div>
             <form class="search-form">
                 <div class="row mb-4">
                     <div class="col-12">
                         <div class="form-floating">
-                            <input type="text" class="form-control" id="search"
-                                placeholder="Buscar por nombre del trabajo o empresa">
-                            <label for="search">Kurtso izenez bilatu</label>
+                            <input type="text" class="form-control" id="searchCourse" placeholder="Bitalu izen bidez">
+                            <label for="searchCourse">Kurtsoa izenez bilatu</label>
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-floating">
-                            <select class="form-select" id="sector">
-                                <option value="" selected>---Aukeratu sektore bat---</option>
-                                <option value="it">IT</option>
-                                <option value="marketing">Marketing</option>
-                                <option value="finance">Finantzak</option>
-                                <option value="health">Osasuna</option>
-                                <option value="education">Heziketa</option>
-                            </select>
-                            <label for="sector">Sektorea</label>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-floating">
-                            <select class="form-select" id="difficulty">
-                                <option value="" selected>---Aukeratu zailtasun bat---</option>
-                                <option value="beginner">Hasiberria</option>
-                                <option value="intermediate">Erditzea</option>
-                                <option value="advanced">Aurreratua</option>
-                            </select>
-                            <label for="difficulty">Zailtasuna</label>
-                        </div>
-                    </div>
                     <div class="col-md-4">
                         <div class="form-floating">
                             <select class="form-select" id="location">
@@ -118,7 +93,6 @@
                                 <option value="Ciudad Real">Ciudad Real</option>
                                 <option value="Cordoba">Córdoba</option>
                                 <option value="Cuenca">Cuenca</option>
-
                                 <option value="Girona">Girona</option>
                                 <option value="Granada">Granada</option>
                                 <option value="Guadalajara">Guadalajara</option>
@@ -158,66 +132,107 @@
                             <label for="location">Lokalidadea</label>
                         </div>
                     </div>
-
-                    <div class="col">
-                        <div class="checkbox-group">
-                            <label for="languages">Hizkuntzak</label>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="english" id="englishCheckbox">
-                                <label class="form-check-label" for="englishCheckbox">Ingelesa</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="spanish" id="spanishCheckbox">
-                                <label class="form-check-label" for="spanishCheckbox">Gaztelera</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="checkbox-group">
-                            <label class="form-check-label">&nbsp;</label>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="basque" id="basqueCheckbox">
-                                <label class="form-check-label" for="basqueCheckbox">Euskera</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="german" id="germanCheckbox">
-                                <label class="form-check-label" for="germanCheckbox">Alemaniera</label>
-                            </div>
-                        </div>
-                    </div>
-
                     <div class="col-md-4">
                         <div class="form-floating">
-                            <select class="form-select" id="mode">
-                                <option value="" selected>---Aukeratu modua---</option>
-                                <option value="online">Online</option>
-                                <option value="inPerson">Presentziala</option>
+                            <select class="form-select" id="sector">
+                                <option value="" selected>---Aukeratu sektore bat---</option>
+                                <option value="it">IT</option>
+                                <option value="marketing">Marketing</option>
+                                <option value="finance">Finantzak</option>
+                                <option value="health">Osasuna</option>
+                                <option value="education">Heziketa</option>
                             </select>
-                            <label for="mode">Lan modua</label>
+                            <label for="sector">Sektorea</label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-floating">
+                            <select class="form-select" id="level">
+                                <option selected>---Kurtsoaren zailtasuna aukeratu---</option>
+                                <option value="easy">Erraza</option>
+                                <option value="medium">Ertaina</option>
+                                <option value="hard">Zaila</option>
+                                <option value="veryHard">Oso zaila</option>
+                            </select>
+                            <label for="level">Zailtasuna</label>
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <div class="form-floating">
-                            <select class="form-select" id="duration">
-                                <option value="" selected>---Aukeratu iraupena---</option>
-                                <option value="short">Laburra</option>
-                                <option value="medium">Ertaina</option>
-                                <option value="long">Luzekoa</option>
-                            </select>
-                            <label for="duration">Iraupena</label>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="checkbox-group">
+                                        <label for="languages">Hizkuntzak</label>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="english"
+                                                id="englishCheckbox">
+                                            <label class="form-check-label" for="englishCheckbox">Ingelesa</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="spanish"
+                                                id="spanishCheckbox">
+                                            <label class="form-check-label" for="spanishCheckbox">Gaztelera</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="checkbox-group">
+                                        <label class="form-check-label">&nbsp;</label>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="basque"
+                                                id="basqueCheckbox">
+                                            <label class="form-check-label" for="basqueCheckbox">Euskera</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="german"
+                                                id="germanCheckbox">
+                                            <label class="form-check-label" for="germanCheckbox">Alemaniera</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="form-floating salary-container">
+
+                    <div class="col-md-6">
+                        <label class="form-check-label">Lan modua</label><br>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="onlineOption" id="online" value="yes">
+                            <label class="form-check-label" for="online">Online</label><br>
+                            <input class="form-check-input" type="radio" name="onlineOption" id="inPerson" value="no">
+                            <label class="form-check-label" for="inPerson">Presentziala</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-floating rating-container">
                             <div>
-                                <label for="ratingRange" class="form-label">Balorazio minimoa</label>
-                                <input type="range" class="form-range" min="1" max="5" step="1" id="ratingRange">
+                                <label for="ratingRange" class="form-label">Balorazio minimoa: </label><span
+                                    class="invisible">aa</span>
+                                <span><strong id="choosenRating">★★★</strong></span>
+                                <input type="range" class="form-range" min="1" max="5" step="1" id="ratingRange"
+                                    onchange="updateRatingValue()">
                             </div>
                             <div class="d-flex justify-content-between">
-                                <span>1</span>
-                                <span>5</span>
+                                <span id="minRating">★</span>
+                                <span id="maxRating">★★★★★</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-floating duration-container">
+                            <div>
+                                <label for="durationRange" class="form-label">Iraupen minimoa: </label><span class="invisible">aa</span>
+                                <span><strong id="choosenDuration">13 hilabete</strong></span>
+                                <input type="range" class="form-range" min="1" max="24" step="1"
+                                    id="durationRange" onchange="updateDurationValue()">
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <span id="minDuration">1</span>
+                                <span id="maxDuration">24</span>
                             </div>
                         </div>
                     </div>
@@ -231,7 +246,31 @@
         </div>
     </section>
 
-    <script src="https://unpkg.com/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+         function updateDurationValue() {
+            var range = document.getElementById("durationRange");
+            var chosenDurationSpan = document.getElementById("choosenDuration");
+            chosenDurationSpan.textContent = range.value + " hilabete";
+        }
+        function updateRatingValue() {
+            var range = document.getElementById("ratingRange");
+            var chosenRatingSpan = document.getElementById("choosenRating");
+
+            // Obtenemos el valor del rango como un número entero
+            var ratingValue = parseInt(range.value);
+
+            // Convertimos el número a una cadena de estrellas
+            var stars = "";
+            for (var i = 0; i < ratingValue; i++) {
+                stars += "★";
+            }
+
+            // Asignamos el string de estrellas al contenido del elemento chosenRatingSpan
+            chosenRatingSpan.textContent = stars;
+        }
+    </script>
+    <script src="https://unpkg.com/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+    </script>
 
 </body>
 
