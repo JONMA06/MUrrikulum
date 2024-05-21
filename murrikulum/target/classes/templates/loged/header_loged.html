@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Fixed Top Navbar</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <!-- Custom styles for this template -->
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div th:fragment="header">
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand">MUrrikulum</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+                    aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                        <!-- Common to all users -->
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" th:href="@{/etxea}">Home</a>
+                        </li>
+
+                        <!-- arrunta specific items -->
+                        <li class="nav-item" th:if="${session.user_role == 'arrunta'}">
+                            <a class="nav-link" th:href="@{/bilatuLanpostua}">Lanpostuak bilatu</a>
+                        </li>
+                        <li class="nav-item" th:if="${session.user_role == 'arrunta'}">
+                            <a class="nav-link" th:href="@{/bilatuKurtsoa}">Kurtsoak bilatu</a>
+                        </li>
+                        <li class="nav-item" th:if="${session.user_role == 'arrunta'}">
+                            <a class="nav-link" th:href="@{/lanEremua}">Nire lan eremua</a>
+                        </li>
+
+                        <!-- enpresa specific items based on helburua -->
+                        <li class="nav-item" th:if="${session.user_role == 'enpresa' and (session.helburua == 1 or session.helburua == 3)}">
+                            <a class="nav-link" th:href="@{/lanpostuBerria}">Lanpostu berria</a>
+                        </li>
+                        <li class="nav-item" th:if="${session.user_role == 'enpresa' and (session.helburua == 1 or session.helburua == 3)}">
+                            <a class="nav-link" th:href="@{/bilatuKurtsoa}">Kurtsoa bilatu</a>
+                        </li>
+                        <li class="nav-item" th:if="${session.user_role == 'enpresa' and (session.helburua == 1 or session.helburua == 3)}">
+                            <a class="nav-link" th:href="@{/enpresakoLanpostuak}">Enpresako lanpostuak</a>
+                        </li>
+                        <li class="nav-item" th:if="${session.user_role == 'enpresa' and (session.helburua == 2 or session.helburua == 3)}">
+                            <a class="nav-link" th:href="@{/kurtsoBerria}">Kurtso berria</a>
+                        </li>
+                        <li class="nav-item" th:if="${session.user_role == 'enpresa' and (session.helburua == 2 or session.helburua == 3)}">
+                            <a class="nav-link" th:href="@{/enpresakoKurtsoak}">Enpresako kurtsoak</a>
+                        </li>
+
+                        <!-- Common to all roles with chat and profile -->
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/txat}">Txat-ak</a>
+                        </li>
+                    </ul>
+
+                    <div class="d-flex ms-3">
+                        <a th:href="@{/saioa_amaitu}" class="btn btn-primary me-2">Saioa amaitu</a>
+                        <a th:href="@{/profila}" class="btn btn-outline-light">
+                            <img src="/images/profila.png" alt="Perfil" width="24" height="24">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <script src="https://unpkg.com/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
