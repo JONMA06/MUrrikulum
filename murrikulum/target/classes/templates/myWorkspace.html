@@ -12,6 +12,16 @@
     <header th:replace="~{header_loged :: header}"></header>
     <div class="container mt-5">
         <h1>NIRE LAN EREMUA</h1>
+        <div class="row">
+            <h2>NIRE LANPOSTUAK</h2>
+            <div th:each="position : ${positions}" class="col-lg-6 col-md-6 mb-12">
+                <div th:insert="~{job :: positionCard}" th:object="${position}"></div>
+            </div>
+            <h2>NIRE KURTSOAK</h2>
+            <div th:each="course : ${courses}" class="col-lg-6 col-md-6 mb-12">
+                <div th:insert="~{course :: courseCard}" th:object="${course}"></div>
+            </div>
+        </div>
     </div>
 </body>
 

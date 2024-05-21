@@ -1,9 +1,14 @@
 package app.backend;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import app.backend.model.Course;
+import app.backend.model.Position;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -39,11 +44,45 @@ public class MainController {
     @GetMapping("/lanEremua")
     public String redirectLanEremua(HttpSession session, Model model) {
         if ("arrunta".equals(session.getAttribute("user_role"))) {
+            List<Position> positions = loadPositionsFromDatabase(); 
+            model.addAttribute("positions", positions);
+            List<Course> courses = loadCoursesFromDatabase(); 
+            model.addAttribute("courses", courses);
             return "myWorkspace";
         } else {
             model.addAttribute("notloged", true);
             return "login";
         }
+    }
+    //TODO falta la base de datos de los lanpostus
+    private List<Position> loadPositionsFromDatabase() {
+        List<Position> positions = new ArrayList<>();
+        for (int i = 1; i <= 6; i++) {
+            Position position = new Position("Lan izena"+i,"Enpresa Izena"+i, "Lokalidadea"+i, "Soldata"+i, "Sektorea"+i, "Hizkuntza"+i, "Beharrezko Hezkuntza"+i, "Online"+i);
+
+            positions.add(position);
+        }
+        return positions;
+    }
+
+    //TODO falta la base de datos de los lanpostus
+    private List<Course> loadCoursesFromDatabase() {
+        List<Course> courses = new ArrayList<>();
+        for (int i = 1; i <= 6; i++) {
+            Course course = new Course(
+            "Default Course"+i, // Kurtso izena por defecto
+            "Default Location"+i, // Lokalitatea por defecto
+            "Default Sector"+i, // Sektorea por defecto
+            "Default Language"+i, // Hizkuntza por defecto
+            "Default Mode"+i, // Modua por defecto
+            "Default Difficulty"+i, // Difficulty por defecto
+            "Default Length"+i, // Length por defecto
+            i % 5 + 1 // Rating por defecto (1 a 5)
+        );
+
+            courses.add(course);
+        }
+        return courses;
     }
 
     @GetMapping("/lanpostuBerria")
