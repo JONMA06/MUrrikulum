@@ -61,6 +61,7 @@ public class NavigationController {
             User user = userOptional.get();
             if (passwordEncoder.matches(password, user.getPasahitza())) {
                 session.setAttribute("user_role", user.getRola());
+                session.setAttribute("user_id", user.getId());
 
                 if ("enpresa".equals(user.getRola())) {
                     Optional<Enpresa> enpresaOptional = enpresaRepository.findByUserId(user.getId());
@@ -111,6 +112,7 @@ public class NavigationController {
         lanBilaRepository.save(lanBila);
 
         session.setAttribute("user_role", "arrunta");
+        session.setAttribute("user_id", user.getId()); //igual no esta bien
         session.setAttribute("notloged", false);
 
         return "home";

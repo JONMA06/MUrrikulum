@@ -6,13 +6,406 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <title>Profila</title>
+    <style>
+        .full-screen-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            background-image: url('/images/fondo_register.jpg');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+    </style>
 </head>
 
 <body>
     <header th:replace="~{header_loged :: header}"></header>
-    <div class="container mt-5">
-        <h1>Profile</h1>
-    </div>
+    <section class="full-screen-section vh-100 gradient-custom">
+        <div class="container py-5 h-100">
+            <div class="row justify-content-center align-items-center h-100">
+                <div class="col-12 col-lg-9 col-xl-7">
+                    <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+                        <div class="card-body p-4 p-md-5">
+                            <h1 class="mb-2 pb-2 pb-md-0 mb-md-2">Profila</h1>
+                            <div th:if="${errorMessage}" class="alert alert-danger" th:utext="${errorMessage}"></div>
+
+                            <form th:if="${session.user_role == 'arrunta'}" th:action="@{/update_profile_arrunta}"
+                                method="post">
+                                <div class="row">
+                                    <div class="col-md-6 mb-2">
+                                        <div class="form-floating mb-2">
+                                            <input type="text" id="izena" name="izena"
+                                                class="form-control form-control-lg" placeholder="Izena"
+                                                th:value="${lanBilak.get(0).izena}" required />
+                                            <label for="izena" class="form-label">Izena</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-2">
+                                        <div class="form-floating mb-2">
+                                            <input type="text" id="abizenak" name="abizena"
+                                                class="form-control form-control-lg" placeholder="Abizenak"
+                                                th:value="${lanBilak.get(0).abizena}" required />
+                                            <label for="abizenak" class="form-label">Abizenak</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6 mb-2">
+                                        <div class="form-floating mb-2">
+                                            <input type="email" id="emailAddress" name="email"
+                                                class="form-control form-control-lg" placeholder="Posta elektronikoa"
+                                                th:value="${lanBilak.get(0).email}" required />
+                                            <label for="emailAddress" class="form-label">Posta elektronikoa</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-2">
+                                        <div class="form-floating mb-2">
+                                            <input type="text" id="erabiltzailea" name="erabiltzailea"
+                                                class="form-control form-control-lg" placeholder="Erabiltzaile izena"
+                                                th:value="${user.erabiltzailea}" required />
+                                            <label for="erabiltzailea" class="form-label">Erabiltzaile izena</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6 mb-2">
+                                        <div class="form-floating mb-1">
+                                            <input type="number" id="adina" name="adina"
+                                                class="form-control form-control-lg" placeholder="Adina"
+                                                th:value="${lanBilak.get(0).adina}" required />
+                                            <label for="adina" class="form-label">Adina</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-2">
+                                        <div class="form-floating mb-1">
+                                            <select class="form-select form-control-lg" id="lokalidadea"
+                                                name="lokalidadea" th:value="${lanBilak.get(0).lokalidadea}">
+                                                <option value="1"
+                                                    th:selected="${lanBilak.get(0).lokalidadea == null} ? 'selected' : ''">
+                                                    ---Probintzia bat aukeratu---</option>
+                                                <option value="Alava"
+                                                    th:selected="${lanBilak.get(0).lokalidadea == 'Alava'} ? 'selected' : ''">
+                                                    Álava</option>
+                                                <option value="Albacete"
+                                                    th:selected="${lanBilak.get(0).lokalidadea == 'Albacete'} ? 'selected' : ''">
+                                                    Albacete</option>
+                                                <option value="Alicante"
+                                                    th:selected="${lanBilak.get(0).lokalidadea == 'Alicante'} ? 'selected' : ''">
+                                                    Alicante</option>
+                                                <option value="Almeria"
+                                                    th:selected="${lanBilak.get(0).lokalidadea == 'Almeria'} ? 'selected' : ''">
+                                                    Almería</option>
+                                                <option value="Asturias"
+                                                    th:selected="${lanBilak.get(0).lokalidadea == 'Asturias'} ? 'selected' : ''">
+                                                    Asturias</option>
+                                                <option value="Avila"
+                                                    th:selected="${lanBilak.get(0).lokalidadea == 'Avila'} ? 'selected' : ''">
+                                                    Ávila</option>
+                                                <option value="Badajoz"
+                                                    th:selected="${lanBilak.get(0).lokalidadea == 'Badajoz'} ? 'selected' : ''">
+                                                    Badajoz</option>
+                                                <option value="Barcelona"
+                                                    th:selected="${lanBilak.get(0).lokalidadea == 'Barcelona'} ? 'selected' : ''">
+                                                    Barcelona</option>
+                                                <option value="Burgos"
+                                                    th:selected="${lanBilak.get(0).lokalidadea == 'Burgos'} ? 'selected' : ''">
+                                                    Burgos</option>
+                                                <option value="Caceres"
+                                                    th:selected="${lanBilak.get(0).lokalidadea == 'Caceres'} ? 'selected' : ''">
+                                                    Cáceres</option>
+                                                <option value="Cadiz"
+                                                    th:selected="${lanBilak.get(0).lokalidadea == 'Cadiz'} ? 'selected' : ''">
+                                                    Cádiz</option>
+                                                <option value="Cantabria"
+                                                    th:selected="${lanBilak.get(0).lokalidadea == 'Cantabria'} ? 'selected' : ''">
+                                                    Cantabria</option>
+                                                <option value="Castellon"
+                                                    th:selected="${lanBilak.get(0).lokalidadea == 'Castellon'} ? 'selected' : ''">
+                                                    Castellón</option>
+                                                <option value="Ceuta"
+                                                    th:selected="${lanBilak.get(0).lokalidadea == 'Ceuta'} ? 'selected' : ''">
+                                                    Ceuta</option>
+                                                <option value="Ciudad Real"
+                                                    th:selected="${lanBilak.get(0).lokalidadea == 'Ciudad Real'} ? 'selected' : ''">
+                                                    Ciudad Real</option>
+                                                <option value="Cordoba"
+                                                    th:selected="${lanBilak.get(0).lokalidadea == 'Cordoba'} ? 'selected' : ''">
+                                                    Córdoba</option>
+                                                <option value="Cuenca"
+                                                    th:selected="${lanBilak.get(0).lokalidadea == 'Cuenca'} ? 'selected' : ''">
+                                                    Cuenca</option>
+                                                <option value="Girona"
+                                                    th:selected="${lanBilak.get(0).lokalidadea == 'Girona'} ? 'selected' : ''">
+                                                    Girona</option>
+                                                <option value="Granada"
+                                                    th:selected="${lanBilak.get(0).lokalidadea == 'Granada'} ? 'selected' : ''">
+                                                    Granada</option>
+                                                <option value="Guadalajara"
+                                                    th:selected="${lanBilak.get(0).lokalidadea == 'Guadalajara'} ? 'selected' : ''">
+                                                    Guadalajara</option>
+                                                <option value="Guipuzcoa"
+                                                    th:selected="${lanBilak.get(0).lokalidadea == 'Guipuzcoa'} ? 'selected' : ''">
+                                                    Guipúzcoa</option>
+                                                <option value="Huelva"
+                                                    th:selected="${lanBilak.get(0).lokalidadea == 'Huelva'} ? 'selected' : ''">
+                                                    Huelva</option>
+                                                <option value="Huesca"
+                                                    th:selected="${lanBilak.get(0).lokalidadea == 'Huesca'} ? 'selected' : ''">
+                                                    Huesca</option>
+                                                <option value="Illes Balears"
+                                                    th:selected="${lanBilak.get(0).lokalidadea == 'Illes Balears'} ? 'selected' : ''">
+                                                    Illes Balears</option>
+                                                <option value="Jaen"
+                                                    th:selected="${lanBilak.get(0).lokalidadea == 'Jaen'} ? 'selected' : ''">
+                                                    Jaén</option>
+                                                <option value="La Coruna"
+                                                    th:selected="${lanBilak.get(0).lokalidadea == 'La Coruna'} ? 'selected' : ''">
+                                                    La Coruña</option>
+                                                <option value="La Rioja"
+                                                    th:selected="${lanBilak.get(0).lokalidadea == 'La Rioja'} ? 'selected' : ''">
+                                                    La Rioja</option>
+                                                <option value="Las Palmas"
+                                                    th:selected="${lanBilak.get(0).lokalidadea == 'Las Palmas'} ? 'selected' : ''">
+                                                    Las Palmas</option>
+                                                <option value="Leon"
+                                                    th:selected="${lanBilak.get(0).lokalidadea == 'Leon'} ? 'selected' : ''">
+                                                    León</option>
+                                                <option value="Lleida"
+                                                    th:selected="${lanBilak.get(0).lokalidadea == 'Lleida'} ? 'selected' : ''">
+                                                    Lleida</option>
+                                                <option value="Lugo"
+                                                    th:selected="${lanBilak.get(0).lokalidadea == 'Lugo'} ? 'selected' : ''">
+                                                    Lugo</option>
+                                                <option value="Madrid"
+                                                    th:selected="${lanBilak.get(0).lokalidadea == 'Madrid'} ? 'selected' : ''">
+                                                    Madrid</option>
+                                                <option value="Malaga"
+                                                    th:selected="${lanBilak.get(0).lokalidadea == 'Malaga'} ? 'selected' : ''">
+                                                    Málaga</option>
+                                                <option value="Melilla"
+                                                    th:selected="${lanBilak.get(0).lokalidadea == 'Melilla'} ? 'selected' : ''">
+                                                    Melilla</option>
+                                                <option value="Murcia"
+                                                    th:selected="${lanBilak.get(0).lokalidadea == 'Murcia'} ? 'selected' : ''">
+                                                    Murcia</option>
+                                                <option value="Navarra"
+                                                    th:selected="${lanBilak.get(0).lokalidadea == 'Navarra'} ? 'selected' : ''">
+                                                    Navarra</option>
+                                                <option value="Ourense"
+                                                    th:selected="${lanBilak.get(0).lokalidadea == 'Ourense'} ? 'selected' : ''">
+                                                    Ourense</option>
+                                                <option value="Palencia"
+                                                    th:selected="${lanBilak.get(0).lokalidadea == 'Palencia'} ? 'selected' : ''">
+                                                    Palencia</option>
+                                                <option value="Pontevedra"
+                                                    th:selected="${lanBilak.get(0).lokalidadea == 'Pontevedra'} ? 'selected' : ''">
+                                                    Pontevedra</option>
+                                                <option value="Salamanca"
+                                                    th:selected="${lanBilak.get(0).lokalidadea == 'Salamanca'} ? 'selected' : ''">
+                                                    Salamanca</option>
+                                                <option value="Santa Cruz de Tenerife"
+                                                    th:selected="${lanBilak.get(0).lokalidadea == 'Santa Cruz de Tenerife'} ? 'selected' : ''">
+                                                    Santa Cruz de Tenerife</option>
+                                                <option value="Segovia"
+                                                    th:selected="${lanBilak.get(0).lokalidadea == 'Segovia'} ? 'selected' : ''">
+                                                    Segovia</option>
+                                                <option value="Sevilla"
+                                                    th:selected="${lanBilak.get(0).lokalidadea == 'Sevilla'} ? 'selected' : ''">
+                                                    Sevilla</option>
+                                                <option value="Soria"
+                                                    th:selected="${lanBilak.get(0).lokalidadea == 'Soria'} ? 'selected' : ''">
+                                                    Soria</option>
+                                                <option value="Tarragona"
+                                                    th:selected="${lanBilak.get(0).lokalidadea == 'Tarragona'} ? 'selected' : ''">
+                                                    Tarragona</option>
+                                                <option value="Teruel"
+                                                    th:selected="${lanBilak.get(0).lokalidadea == 'Teruel'} ? 'selected' : ''">
+                                                    Teruel</option>
+                                                <option value="Toledo"
+                                                    th:selected="${lanBilak.get(0).lokalidadea == 'Toledo'} ? 'selected' : ''">
+                                                    Toledo</option>
+                                                <option value="Valencia"
+                                                    th:selected="${lanBilak.get(0).lokalidadea == 'Valencia'} ? 'selected' : ''">
+                                                    Valencia</option>
+                                                <option value="Valladolid"
+                                                    th:selected="${lanBilak.get(0).lokalidadea == 'Valladolid'} ? 'selected' : ''">
+                                                    Valladolid</option>
+                                                <option value="Vizcaya"
+                                                    th:selected="${lanBilak.get(0).lokalidadea == 'Vizcaya'} ? 'selected' : ''">
+                                                    Vizcaya</option>
+                                                <option value="Zamora"
+                                                    th:selected="${lanBilak.get(0).lokalidadea == 'Zamora'} ? 'selected' : ''">
+                                                    Zamora</option>
+                                                <option value="Zaragoza"
+                                                    th:selected="${lanBilak.get(0).lokalidadea == 'Zaragoza'} ? 'selected' : ''">
+                                                    Zaragoza</option>
+                                            </select>
+                                            <label for="lokalidadea" class="form-label">Probintzia</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mt-2 pt-2">
+                                    <input data-mdb-ripple-init class="btn btn-primary btn-lg" type="submit"
+                                        value="Ados">
+                                </div>
+                            </form>
+
+                            <!-- <form th:if="${session.user_role == 'enpresa'}" th:action="@{/update_profile_enpresa}"
+                                method="post" onsubmit="return validateForm()">
+                                <div class="row">
+                                    <div class="col-md-6 mb-2">
+                                        <div class="form-floating mb-2">
+                                            <input type="text" id="enpresa_izena" name="enpresa_izena"
+                                                class="form-control form-control-lg" placeholder="enpresa_izena"
+                                                th:value="${enpresak.enpresa_izena}" required />
+                                            <label for="enpresa_izena" class="form-label">Enpresaren izena</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-2">
+                                        <div class="form-floating mb-2">
+                                            <input type="text" id="izenaKomertziala" name="izenaKomertziala"
+                                                class="form-control form-control-lg" placeholder="Izena Komertziala"
+                                                th:value="${user.izenaKomertziala}" required />
+                                            <label for="izenaKomertziala" class="form-label">Izena Komertziala</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div id="passwordRequirements" class="mb-2"></div>
+                                    <div class="col-md-6 mb-2">
+                                        <div class="form-floating mb-2">
+                                            <input type="password" id="pasahitza" name="pasahitza"
+                                                class="form-control form-control-lg" placeholder="Pasahitza" required
+                                                onchange="checkPasswordRequirements()" />
+                                            <label for="pasahitza" class="form-label">Pasahitza</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-2">
+                                        <div class="form-floating mb-1">
+                                            <select class="form-select form-control-lg" id="lokalidadea"
+                                                name="lokalidadea" th:value="${lanBilak.lokalidadea}">
+                                                <option value="1">---Probintzia bat aukeratu---</option>
+                                                <option value="Alava">Álava</option>
+                                                <option value="Albacete">Albacete</option>
+                                                <option value="Alicante">Alicante</option>
+                                                <option value="Almeria">Almería</option>
+                                                <option value="Asturias">Asturias</option>
+                                                <option value="Avila">Ávila</option>
+                                                <option value="Badajoz">Badajoz</option>
+                                                <option value="Barcelona">Barcelona</option>
+                                                <option value="Burgos">Burgos</option>
+                                                <option value="Caceres">Cáceres</option>
+                                                <option value="Cadiz">Cádiz</option>
+                                                <option value="Cantabria">Cantabria</option>
+                                                <option value="Castellon">Castellón</option>
+                                                <option value="Ceuta">Ceuta</option>
+                                                <option value="Ciudad Real">Ciudad Real</option>
+                                                <option value="Cordoba">Córdoba</option>
+                                                <option value="Cuenca">Cuenca</option>
+                                                <option value="Girona">Girona</option>
+                                                <option value="Granada">Granada</option>
+                                                <option value="Guadalajara">Guadalajara</option>
+                                                <option value="Guipuzcoa">Guipúzcoa</option>
+                                                <option value="Huelva">Huelva</option>
+                                                <option value="Huesca">Huesca</option>
+                                                <option value="Illes Balears">Illes Balears</option>
+                                                <option value="Jaen">Jaén</option>
+                                                <option value="La Coruna">La Coruña</option>
+                                                <option value="La Rioja">La Rioja</option>
+                                                <option value="Las Palmas">Las Palmas</option>
+                                                <option value="Leon">León</option>
+                                                <option value="Lleida">Lleida</option>
+                                                <option value="Lugo">Lugo</option>
+                                                <option value="Madrid">Madrid</option>
+                                                <option value="Malaga">Málaga</option>
+                                                <option value="Melilla">Melilla</option>
+                                                <option value="Murcia">Murcia</option>
+                                                <option value="Navarra">Navarra</option>
+                                                <option value="Ourense">Ourense</option>
+                                                <option value="Palencia">Palencia</option>
+                                                <option value="Pontevedra">Pontevedra</option>
+                                                <option value="Salamanca">Salamanca</option>
+                                                <option value="Santa Cruz de Tenerife">Santa Cruz de Tenerife</option>
+                                                <option value="Segovia">Segovia</option>
+                                                <option value="Sevilla">Sevilla</option>
+                                                <option value="Soria">Soria</option>
+                                                <option value="Tarragona">Tarragona</option>
+                                                <option value="Teruel">Teruel</option>
+                                                <option value="Toledo">Toledo</option>
+                                                <option value="Valencia">Valencia</option>
+                                                <option value="Valladolid">Valladolid</option>
+                                                <option value="Vizcaya">Vizcaya</option>
+                                                <option value="Zamora">Zamora</option>
+                                                <option value="Zaragoza">Zaragoza</option>
+                                            </select>
+                                            <label for="lokalidadea" class="form-label">Probintzia</label>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6 mb-2">
+                                        <div class="form-floating mb-2">
+                                            <input type="email" id="emailAddress" name="email"
+                                                class="form-control form-control-lg" placeholder="Posta elektronikoa"
+                                                th:value="${user.email}" required />
+                                            <label for="emailAddress" class="form-label">Posta elektronikoa</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-2">
+                                        <div class="form-floating mb-2">
+                                            <input type="text" id="erabiltzailea" name="erabiltzailea"
+                                                class="form-control form-control-lg" placeholder="Erabiltzaile izena"
+                                                th:value="${user.erabiltzailea}" required />
+                                            <label for="erabiltzailea" class="form-label">Erabiltzaile izena</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6 mb-2">
+                                        <div class="form-floating mb-1">
+                                            <input type="text" id="kokapena" name="kokapena"
+                                                class="form-control form-control-lg" placeholder="Kokapena"
+                                                th:value="${user.kokapena}" required />
+                                            <label for="kokapena" class="form-label">Kokapena</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-2">
+                                        <div class="form-floating mb-1">
+                                            <input type="text" id="herrialdea" name="herrialdea"
+                                                class="form-control form-control-lg" placeholder="Herrialdea"
+                                                th:value="${user.herrialdea}" required />
+                                            <label for="herrialdea" class="form-label">Herrialdea</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mt-2 pt-2">
+                                    <input data-mdb-ripple-init class="btn btn-primary btn-lg" type="submit"
+                                        value="Ados">
+                                </div>
+                            </form> -->
+
+                            <div class="row mt-4">
+                                <div class="col-md-12">
+                                    <a th:href="@{/delete_profile}" class="btn btn-danger">Kontua Ezabatu</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
 
 </html>

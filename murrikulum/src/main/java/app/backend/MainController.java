@@ -2,19 +2,26 @@ package app.backend;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import app.backend.model.Course;
 import app.backend.model.Position;
+import app.backend.model.User;
+import app.backend.repository.UserRepository;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class MainController {
 
-    @GetMapping({"/", "/etxea"})
+    @Autowired
+    private UserRepository userRepository;
+
+    @GetMapping({ "/", "/etxea" })
     public String home(Model model, HttpSession session) {
         return "home";
     }
@@ -44,9 +51,9 @@ public class MainController {
     @GetMapping("/lanEremua")
     public String redirectLanEremua(HttpSession session, Model model) {
         if ("arrunta".equals(session.getAttribute("user_role"))) {
-            List<Position> positions = loadPositionsFromDatabase(); 
+            List<Position> positions = loadPositionsFromDatabase();
             model.addAttribute("positions", positions);
-            List<Course> courses = loadCoursesFromDatabase(); 
+            List<Course> courses = loadCoursesFromDatabase();
             model.addAttribute("courses", courses);
             return "myWorkspace";
         } else {
@@ -54,31 +61,33 @@ public class MainController {
             return "login";
         }
     }
-    //TODO falta la base de datos de los lanpostus
+
+    // TODO falta la base de datos de los lanpostus
     private List<Position> loadPositionsFromDatabase() {
         List<Position> positions = new ArrayList<>();
         for (int i = 1; i <= 6; i++) {
-            Position position = new Position("Lan izena"+i,"Enpresa Izena"+i, "Lokalidadea"+i, "Soldata"+i, "Sektorea"+i, "Hizkuntza"+i, "Beharrezko Hezkuntza"+i, "Online"+i);
+            Position position = new Position("Lan izena" + i, "Enpresa Izena" + i, "Lokalidadea" + i, "Soldata" + i,
+                    "Sektorea" + i, "Hizkuntza" + i, "Beharrezko Hezkuntza" + i, "Online" + i);
 
             positions.add(position);
         }
         return positions;
     }
 
-    //TODO falta la base de datos de los lanpostus
+    // TODO falta la base de datos de los lanpostus
     private List<Course> loadCoursesFromDatabase() {
         List<Course> courses = new ArrayList<>();
         for (int i = 1; i <= 6; i++) {
             Course course = new Course(
-            "Default Course"+i, // Kurtso izena por defecto
-            "Default Location"+i, // Lokalitatea por defecto
-            "Default Sector"+i, // Sektorea por defecto
-            "Default Language"+i, // Hizkuntza por defecto
-            "Default Mode"+i, // Modua por defecto
-            "Default Difficulty"+i, // Difficulty por defecto
-            "Default Length"+i, // Length por defecto
-            i % 5 + 1 // Rating por defecto (1 a 5)
-        );
+                    "Default Course" + i, // Kurtso izena por defecto
+                    "Default Location" + i, // Lokalitatea por defecto
+                    "Default Sector" + i, // Sektorea por defecto
+                    "Default Language" + i, // Hizkuntza por defecto
+                    "Default Mode" + i, // Modua por defecto
+                    "Default Difficulty" + i, // Difficulty por defecto
+                    "Default Length" + i, // Length por defecto
+                    i % 5 + 1 // Rating por defecto (1 a 5)
+            );
 
             courses.add(course);
         }
@@ -147,11 +156,38 @@ public class MainController {
     @GetMapping("/profila")
     public String profile(HttpSession session, Model model) {
         String userRole = (String) session.getAttribute("user_role");
-        if ("arrunta".equals(userRole) || "enpresa".equals(userRole)) {
-            return "profile";
+        Integer userId = (Integer) session.getAttribute("user_id");
+
+        if (userId == null) {
+            model.addAttribute("notloged", true);
+            return "login";
+        }
+
+        Optional<User> userOptional = userRepository.findById(userId);
+        if (userOptional.isEmpty()) {
+            model.addAttribute("notloged", true);
+            return "login";
+        }
+
+        User user = userOptional.get();
+        model.addAttribute("user", user);
+
+        if ("arrunta".equals(userRole)) {
+            if (!user.getLanBilak().isEmpty()) {
+                model.addAttribute("lanBilak", user.getLanBilak());
+            }
+            if (!user.getDokumentuak().isEmpty()) {
+                model.addAttribute("dokumentuak", user.getDokumentuak());
+            }
+        } else if ("enpresa".equals(userRole)) {
+            if (!user.getEnpresak().isEmpty()) {
+                model.addAttribute("enpresak", user.getEnpresak());
+            }
         } else {
             model.addAttribute("notloged", true);
             return "login";
         }
+
+        return "profile";
     }
 }
